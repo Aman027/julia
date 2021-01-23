@@ -190,6 +190,12 @@ LLVM_CPPFLAGS += -flto
 LLVM_LDFLAGS += -flto
 endif # LLVM_LTO
 
+ifeq ($(USE_LLVM_SHLIB),1)
+ifeq ($(USECLANG),0)
+LLVM_CPPFLAGS += -fno-gnu-unique
+endif
+endif
+
 ifeq ($(fPIC),)
 LLVM_CMAKE += -DLLVM_ENABLE_PIC=OFF
 endif
